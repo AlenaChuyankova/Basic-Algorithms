@@ -1,0 +1,73 @@
+//copywrite Ivan Bibilov
+//NOD
+
+/*function nod(x,y) {
+    var m = Math.max(x,y)
+    var n = Math.min(x,y)
+    while (n !== 0) {
+        var z = n;
+        n =  m % n;
+        m = z;
+    }
+    console.log(m);
+    return m;
+}
+nod(21,14);*/
+
+//copywrite: Ulbi TV
+// LINEAR SEARCH
+// returns item's position 
+
+/*const array = [1, 4, 5, 8, 5, 1, 2, 7, 5, 2, 11];
+let count = 0;
+function linearSearch (array, item) {
+    for (let i=0; i < array.length; i++) {
+        count += 1; //counts the iterations
+        if(array[i] === item) {
+            return i;
+        }
+    }
+    return null;
+}
+console.log(linearSearch(array, 4));*/
+
+/*function linearSearchItem (array, item) {
+    for (let i=0; i < array.length; i++) {
+        if(array[i] === item) {
+            return array[i];
+        }
+    }
+    return "We don't have it";
+}
+console.log(linearSearchItem(array, 1));*/
+
+//BINARY SEARCH
+const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+let count = 0;
+
+function binarySearch(array,item) {
+    let start = 0;
+    let end = array.length;
+    let middle;
+    let found = false; //the ark that should illustrate if we have found the element 
+    let position = -1; //the element's position, that should be returned. If nothing is found, the function will return -1
+
+    while (found === false && start <= end) { //loop is working while the element is not found and until the start and the end are equal
+        count += 1; //counting how many iterations we have
+        middle = Math.floor((start + end) / 2); //finding the central element in the array. The method Math.floor will help us if the array has odd number of elements. It will round to the bottom.
+        if (array[middle] === item) { //check if we found the element after first try. If it's directly at the middle, we assign this index to position.
+            found = true;
+            position = middle;
+            return position;
+        }
+        if (item < array[middle]) {
+            end = middle-1; //if our element is less than the middle, we should work only with the left part of the array. So middle-1 now is our "end". 
+        } else {
+            start = middle+1; //if our element is more than the middle, we should work with the right part of the array. So midlle+1 now is our start.
+        }
+        //after that the loop starts to work again until array[middle] is equal to item 
+    }
+    return position;
+}
+
+console.log(binarySearch(array,9));
